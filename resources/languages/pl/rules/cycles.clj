@@ -51,7 +51,7 @@
    :grain :year}
 
   "w tym <cycle>"
-  [#"(?i)w t(ym|ej|ych)" (dim :cycle)]
+  [#"(?i)w (dok[łl]adnie )?t(ym|ej|ych)" (dim :cycle)]
   (cycle-nth (:grain %2) 0)
 
   "w zeszłym <cycle>"
