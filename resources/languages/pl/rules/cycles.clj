@@ -39,5 +39,27 @@
   #"(?i)miesi[ęe]cy|miesi[ąa]c(ami|ach|a|om|owi|em|e|y|u)?"
   {:dim :cycle
    :grain :month}
+
+  "kwartał (cycle)"
+  #"(?i)kwarta[łl](u|owi|em|y|[óo]w|ami|ach|om)|kwartale"
+  {:dim :cycle
+   :grain :quarter}
   
+  "year (cycle)"
+  #"(?i)rok(u|owi|iem)?|lat(ami|ach|a|y|om)?"
+  {:dim :cycle
+   :grain :year}
+
+  "w tym <cycle>"
+  [#"(?i)w t(ym|ej|ych)" (dim :cycle)]
+  (cycle-nth (:grain %2) 0)
+
+  "w zeszłym <cycle>"
+  [#"(?i)w zeszł(ym|ej|ych)" (dim :cycle)]
+  (cycle-nth (:grain %2) -1)
+
+  "<cycle> temu"
+  [(dim :cycle) #"(?i)temu"]
+  (cycle-nth (:grain %1) -1)
+
 )
